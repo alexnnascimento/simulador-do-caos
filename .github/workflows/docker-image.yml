@@ -27,11 +27,3 @@ jobs:
           context: ./src
           push: true
           tags: alexnnascimento/simulador-do-caos:v2        
-
-
-
-
-
-
-
-
