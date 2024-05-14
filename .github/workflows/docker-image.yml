@@ -16,10 +16,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Verificar diretório
-        uses: shinhwagk/remote-bash@0.0.1
-        run: pwd
-      -
         name: Build and push
         uses: docker/build-push-action@v5
         with:
