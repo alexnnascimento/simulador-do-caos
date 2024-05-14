@@ -1,6 +1,7 @@
 FROM node:20.9.0
 WORKDIR /app
 COPY package*.json ./
+RUN npm cache clean --force
 RUN npm install
 RUN apt update && apt install stress --yes
 COPY . .
