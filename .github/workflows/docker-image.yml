@@ -24,6 +24,9 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ../src
+          context: ./src
+          file: ./src/Dockerfile
           push: true
-          tags: alexnnascimento/simulador-do-caos:v2        
+          tags:  |
+            alexnnascimento/simulador-do-caos:v2
+            alexnnascimento/simulador-do-caos:latest
