@@ -15,12 +15,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and Tag Image 
-        id: build-image
-        run: |
-          # Build a docker container and Tag
-          docker build --file ./src/Dockerfile \
-          -t alexnnascimento/simulador-do-caos:v2 .  
       -
         name: Build and push
         uses: docker/build-push-action@v5.3.0
