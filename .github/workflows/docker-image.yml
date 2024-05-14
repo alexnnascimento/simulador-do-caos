@@ -24,6 +24,6 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./src
+          context: ../src
           push: true
           tags: alexnnascimento/simulador-do-caos:v2        
