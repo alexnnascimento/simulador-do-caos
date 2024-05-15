@@ -28,3 +28,19 @@ jobs:
           tags:  |
             alexnnascimento/simulador-do-caos:v3
             alexnnascimento/simulador-do-caos:latest
+
+
+  CD:
+    runs-on: ubuntu-latest
+
+    steps:
+      - 
+        name: Kubernetes Deployment
+        uses: TanmoySG/k-deploy-action@v0.2.2-alpha
+        with:
+          context: ./manifests
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+          namespace: default
+          manifest: ./deploy.yaml
+          
+
