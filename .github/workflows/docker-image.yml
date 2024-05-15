@@ -50,6 +50,7 @@ jobs:
             manifests/deploy.yaml
             manifests/hpa.yaml
             manifests/services.yaml
+            manifests/ingress.yaml
 
          
 
