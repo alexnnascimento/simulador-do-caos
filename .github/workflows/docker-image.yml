@@ -41,6 +41,6 @@ jobs:
           context: ./manifests
           kubeconfig: ${{ secrets.KUBECONFIG }}
           namespace: default
-          manifest: ./deploy.yaml
+          manifest: deploy.yaml
           
 
