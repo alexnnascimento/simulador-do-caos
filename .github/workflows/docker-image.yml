@@ -48,6 +48,8 @@ jobs:
           images: alexnnascimento/simulador-do-caos:v1
           manifests: |
             manifests/deploy.yaml
+            manifests/hpa.yaml
+            manifests/services.yaml
 
          
 
