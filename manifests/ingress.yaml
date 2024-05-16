@@ -6,19 +6,14 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
+    - host: simuladordocaos.com.br
     - http:
         paths:
           - pathType: Prefix
-            path: /foo
+            path: /
             backend:
               service:
-                name: foo-service
+                name: simulador-do-caos
                 port:
-                  number: 8080
-          - pathType: Prefix
-            path: /bar
-            backend:
-              service:
-                name: bar-service
-                port:
-                  number: 8080
+                  number: 80
+         
