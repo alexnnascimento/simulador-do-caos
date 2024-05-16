@@ -6,7 +6,6 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && contains(github.event.compare, '...') }}
   
     steps:
       - 
@@ -26,7 +25,7 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags:  |
-            alexnnascimento/simulador-do-caos:v3
+            alexnnascimento/simulador-do-caos:v1
             alexnnascimento/simulador-do-caos:latest
 
 
@@ -47,7 +46,7 @@ jobs:
         with:
           images: alexnnascimento/simulador-do-caos:v1
           manifests: |
-          force: --force
+          force: true
             manifests/deploy.yaml
             manifests/hpa.yaml
             manifests/services.yaml
