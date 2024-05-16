@@ -46,6 +46,7 @@ jobs:
         uses: Azure/k8s-deploy@v4.9
         with:
           images: alexnnascimento/simulador-do-caos:v1
+          force: --force
           manifests: |
             manifests/deploy.yaml
             manifests/hpa.yaml
