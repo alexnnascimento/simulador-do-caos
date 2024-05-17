@@ -6,33 +6,27 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
-  
+
     steps:
-    - name: Output Run ID
-      run: echo ${{ github.run_id }}
-    - name: Output Run Number
-      run: echo ${{ github.run_number }}
-    - name: Output Run Attempt
-      run: echo ${{ github.run_attempt }}
-    - 
-      name: Checkout
-      uses: actions/checkout@v4
-    - 
-      name: Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
-         username: ${{ secrets.DOCKERHUB_USERNAME }}
-         password: ${{ secrets.DOCKERHUB_TOKEN }}       
-    -
-      name: Build and push
-      uses: docker/build-push-action@v5
-      with:
-        context: ./src
-        file: ./src/Dockerfile
-        push: true
-        tags:  |
-         alexnnascimento/simulador-do-caos:${{github.run.number}}
-         alexnnascimento/simulador-do-caos:latest
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src
+          file: ./src/Dockerfile
+          push: true
+          tags:  |
+            alexnnascimento/simulador-do-caos:v1
+            alexnnascimento/simulador-do-caos:latest
 
 
   CD:
@@ -42,7 +36,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Definindo o contexto  
+      - name: Definindo o contexto
         uses: Azure/k8s-set-context@v3.0
         with:
           method: kubeconfig
@@ -50,16 +44,10 @@ jobs:
       - name: Deploy Kubernetes cluster
         uses: Azure/k8s-deploy@v4.9
         with:
-          images: alexnnascimento/simulador-do-caos:latest
+          images: alexnnascimento/simulador-do-caos:${{}github.run.number}
           force: true
           manifests: |
             manifests/deploy.yaml
             manifests/hpa.yaml
             manifests/services.yaml
             manifests/ingress.yaml
-
-         
-
-      
-          
-
