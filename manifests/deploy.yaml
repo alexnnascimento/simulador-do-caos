@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: simulador-do-caos
-        image: alexnnascimento/simulador-do-caos:v1
+        image: alexnnascimento/simulador-do-caos:latest
         resources:
           limits:
             memory: "128Mi"
