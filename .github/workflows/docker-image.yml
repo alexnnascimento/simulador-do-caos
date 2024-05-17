@@ -8,25 +8,31 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-      - 
-        name: Checkout
-        uses: actions/checkout@v4
-      - 
-        name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}       
-      -
-        name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: ./src
-          file: ./src/Dockerfile
-          push: true
-          tags:  |
-            alexnnascimento/simulador-do-caos:${{ github.run.number }}
-            alexnnascimento/simulador-do-caos:latest
+    - name: Output Run ID
+      run: echo ${{ github.run_id }}
+    - name: Output Run Number
+      run: echo ${{ github.run_number }}
+    - name: Output Run Attempt
+      run: echo ${{ github.run_attempt }}
+    - 
+      name: Checkout
+      uses: actions/checkout@v4
+    - 
+      name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+         username: ${{ secrets.DOCKERHUB_USERNAME }}
+         password: ${{ secrets.DOCKERHUB_TOKEN }}       
+    -
+      name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: ./src
+        file: ./src/Dockerfile
+        push: true
+        tags:  |
+         alexnnascimento/simulador-do-caos:${{ github.run.number }}
+         alexnnascimento/simulador-do-caos:latest
 
 
   CD:
