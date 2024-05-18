@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Export variavel
         run: |
-          echo "Export variavel:" ${{ GITHUB_RUN_NUMBER }}
+          echo "Export variavel:" $GITHUB_RUN_NUMBER
           
       - name: Exibir Variáveis de Ambiente
         run: |
@@ -33,7 +33,7 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags:  |
-            alexnnascimento/simulador-do-caos:${{ GITHUB_RUN_NUMBER }}
+            alexnnascimento/simulador-do-caos:$GITHUB_RUN_NUMBER
             alexnnascimento/simulador-do-caos:latest
 
 
