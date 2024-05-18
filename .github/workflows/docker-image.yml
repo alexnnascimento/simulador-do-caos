@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      - name: Exibir Variáveis de Ambiente
+        run: |
+          echo "Variáveis de Ambiente:"
+          printenv
       -
         name: Checkout
         uses: actions/checkout@v4
