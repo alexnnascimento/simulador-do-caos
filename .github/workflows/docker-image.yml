@@ -33,7 +33,7 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags:  |
-            alexnnascimento/simulador-do-caos: ${{ GITHUB_RUN_NUMBER }}
+            alexnnascimento/simulador-do-caos: $GITHUB_RUN_NUMBER
             alexnnascimento/simulador-do-caos:latest
 
 
