@@ -6,11 +6,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: simulador.google.com
+    - host: simuladordocaos.com.br
     - http:
         paths:
-        - path: /
-          backend:
-              serviceName: simulador-do-caos
-              servicePort: 80
-         
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: simulador-do-caos
+                port:
+                  number: 80
