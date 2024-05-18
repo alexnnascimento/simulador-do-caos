@@ -33,7 +33,7 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags:  |
-            alexnnascimento/simulador-do-caos:{{ $GITHUB_RUN_NUMBER }}
+            alexnnascimento/simulador-do-caos:${{ GITHUB_RUN_NUMBER }}
             alexnnascimento/simulador-do-caos:latest
 
 
@@ -52,7 +52,7 @@ jobs:
       - name: Deploy Kubernetes cluster
         uses: Azure/k8s-deploy@v4.9
         with:
-          images: alexnnascimento/simulador-do-caos:latest
+          images: alexnnascimento/simulador-do-caos:${{ GITHUB_RUN_NUMBER }}
           force: true
           manifests: |
             manifests/deploy.yaml
