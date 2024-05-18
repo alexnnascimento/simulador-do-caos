@@ -8,10 +8,14 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      - name: Export variavel
+        run: |
+          echo "Export variavel:" ${{ GITHUB_RUN_NUMBER }}
+          
       - name: Exibir Variáveis de Ambiente
         run: |
           echo "Variáveis de Ambiente:"
-          printenv
+          printenv    
       -
         name: Checkout
         uses: actions/checkout@v4
@@ -29,7 +33,7 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags:  |
-            alexnnascimento/simulador-do-caos:v1
+            alexnnascimento/simulador-do-caos:${{ GITHUB_RUN_NUMBER }}
             alexnnascimento/simulador-do-caos:latest
 
 
