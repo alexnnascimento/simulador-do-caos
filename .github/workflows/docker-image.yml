@@ -52,7 +52,7 @@ jobs:
       - name: Deploy Kubernetes cluster
         uses: Azure/k8s-deploy@v4.9
         with:
-          images: alexnnascimento/simulador-do-caos:latest
+          images: alexnnascimento/simulador-do-caos:${{ github.run_number }}
           force: true
           manifests: |
             manifests/deploy.yaml
