@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: simulador-do-caos
-        image: alexnnascimento/simulador-do-caos:latest
+        image: alexnnascimento/simulador-do-caos:v${{ github.run_number }}
         resources:
           limits:
             memory: "128Mi"
