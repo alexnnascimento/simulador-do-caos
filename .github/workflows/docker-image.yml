@@ -60,3 +60,4 @@ jobs:
             manifests/services.yaml
             manifests/ingress.yaml
             manifests/clusterissuer.yaml
+            manifests/certificate.yaml
