@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: simulador.google.com
+    - host: simulador.edujedi.com.br
     - http:
         paths:
           - pathType: Prefix
@@ -19,5 +19,5 @@ spec:
                   number: 3000
   tls:
   - hosts:
-    - simulador.edujedi.com.br # your domain 
+    - simulador.edujedi.com.br 
     secretName: letsencrypt-prod  
