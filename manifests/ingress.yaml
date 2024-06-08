@@ -17,3 +17,7 @@ spec:
                 name: simulador-do-caos
                 port:
                   number: 3000
+  tls:
+  - hosts:
+    - simulador.edujedi.com.br # your domain 
+    secretName: letsencrypt-prod  
