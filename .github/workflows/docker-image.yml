@@ -59,3 +59,4 @@ jobs:
             manifests/hpa.yaml
             manifests/services.yaml
             manifests/ingress.yaml
+            manifests/clusterissuer.yaml
