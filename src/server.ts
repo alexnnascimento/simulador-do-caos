@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response, application, NextFunction } from "express";
 import { exec } from "child_process";
 import { setTimeout } from "timers/promises";
 
@@ -6,34 +6,25 @@ const app = express();
 const PORT = parseInt(`${process.env.PORT || 3000}`);
 const SIGTERM_SECONDS = parseInt(`${process.env.SIGTERM_SECONDS || 20}`) * 1000;
 
-let saudavel = true;
+let saudavel = true
 let readTime = new Date(Date.now());
-let isRead = () => {
+let isRead = () => { 
     return readTime < new Date(Date.now());
 };
 
 app.use((req: Request, res: Response, next: NextFunction) => {
+    
     if (saudavel) {
         next();
     } else {
         res.statusCode = 500;
         return res.send('');
-    }
+    }   
 });
 
 app.use(express.json());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
-
-// Rota para responder aos desafios de validação do Let's Encrypt
-app.get('/.well-known/acme-challenge/:token', (req: Request, res: Response) => {
-    const token = req.params.token;
-    // Substitua 'SEU_TOKEN_AQUI' pelo token fornecido pelo Let's Encrypt
-    const acmeChallengeResponse = 'SEU_TOKEN_AQUI'; 
-
-    res.set('Content-Type', 'text/plain');
-    res.send(acmeChallengeResponse);
-});
 
 app.put("/exit/success", (req: Request, res: Response) => {
     res.send("Aplicação encerrada com sucesso.");
@@ -64,31 +55,37 @@ app.put("/stress/memory", (req: Request, res: Response) => {
 });
 
 app.get('/ready', (req: Request, res: Response) => {
+   
     if (isRead()) {
         res.statusCode = 200;
         return res.send('Ok');
     } else {
         res.statusCode = 500;
         return res.send('');
-    }
+    }   
 });
 
 app.put('/unhealth', (req: Request, res: Response) => {
+
     saudavel = false;
     res.send("A aplicação agora está fora.");
 });
 
 app.get("/health", (req: Request, res: Response) => {
+
     res.send("ok");
+
 });
 
 app.put('/unreadfor/:seconds', (req: Request, res: Response) => {
+    
     const dado = new Date(new Date(Date.now()).getTime() + (1000 * +req.params.seconds));
-    readTime = dado;
+    readTime = dado;    
     res.send("A aplicação indisponível por 60 segundos.");
 });
 
 process.on('SIGTERM', () => {
+
     setTimeout(SIGTERM_SECONDS);
     console.log('Encerrando processo');
     process.exit(0);
