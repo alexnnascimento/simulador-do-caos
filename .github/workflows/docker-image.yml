@@ -5,8 +5,8 @@ on:
 
 jobs:
   CI:
-    runs-on: ubuntu-22.04
-
+#    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: Export variavel
         run: |
@@ -37,27 +37,27 @@ jobs:
             alexnnascimento/simulador-do-caos:latest
 
 
-  CD:
-    runs-on: ubuntu-latest
-    needs: [CI]
+  # CD:
+  #   runs-on: ubuntu-latest
+  #   needs: [CI]
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Definindo o contexto
-        uses: Azure/k8s-set-context@v3.0
-        with:
-          method: kubeconfig
-          kubeconfig: ${{secrets.KUBECONFIG}}
-      - name: Deploy Kubernetes cluster
-        uses: Azure/k8s-deploy@v4.9
-        with:
-          images: alexnnascimento/simulador-do-caos:v${{ github.run_number }}
-          force: true
-          manifests: |
-            manifests/deploy.yaml
-            manifests/hpa.yaml
-            manifests/services.yaml
-            manifests/ingress.yaml
-            manifests/clusterissuer.yaml
-            manifests/certificate.yaml
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #     - name: Definindo o contexto
+  #       uses: Azure/k8s-set-context@v3.0
+  #       with:
+  #         method: kubeconfig
+  #         kubeconfig: ${{secrets.KUBECONFIG}}
+  #     - name: Deploy Kubernetes cluster
+  #       uses: Azure/k8s-deploy@v4.9
+  #       with:
+  #         images: alexnnascimento/simulador-do-caos:v${{ github.run_number }}
+  #         force: true
+  #         manifests: |
+  #           manifests/deploy.yaml
+  #           manifests/hpa.yaml
+  #           manifests/services.yaml
+  #           manifests/ingress.yaml
+  #           manifests/clusterissuer.yaml
+  #           manifests/certificate.yaml
